@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hash-Chaining Camera Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔒 Hash-Chaining Camera</h1>
+            <p class="subtitle">Real-time provenance tracking with Ed25519 + SHA-256</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Left Column: Live Preview -->
+            <div class="preview-section">
+                <h2>📸 Live Preview</h2>
+                <div class="preview-container">
+                    <img id="preview" src="/latest.jpg" alt="Loading camera feed..." />
+                    <p class="preview-note">Updates every ~2 seconds</p>
+                </div>
+            </div>
+
+            <!-- Right Column: Chain Log -->
+            <div class="chain-section">
+                <h2>⛓️ Live Chain</h2>
+                <div class="chain-container">
+                    <div id="chain-log" class="chain-log">
+                        <div class="chain-entry loading">
+                            <span>🔄 Waiting for first frame...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-section">
+                <span class="status-label">Verification Status:</span>
+                <span id="status-indicator" class="status-indicator status-waiting">
+                    🔄 Starting up...
+                </span>
+            </div>
+            <div class="actions-section">
+                <button id="tamper-btn" class="tamper-btn">
+                    🔧 Tamper a Frame
+                </button>
+            </div>
+        </div>
+
+        <!-- Connection Status -->
+        <div id="connection-status" class="connection-status connecting">
+            🔌 Connecting to server...
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

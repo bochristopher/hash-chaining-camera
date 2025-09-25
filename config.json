@@ -1,0 +1,8 @@
+{
+  "camera": "USB",
+  "usbDevice": "/dev/video0",
+  "width": 1920,
+  "height": 1080,
+  "jpegQuality": 85,
+  "captureIntervalMs": 2000
+}

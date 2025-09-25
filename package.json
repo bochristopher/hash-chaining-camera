@@ -1,0 +1,31 @@
+{
+  "name": "hash-chaining-camera",
+  "version": "1.0.0",
+  "description": "Jetson Orin Nano hash-chaining camera with real-time provenance tracking",
+  "main": "server.js",
+  "scripts": {
+    "demo:dashboard": "node server.js",
+    "generate-keys": "node generate_keys.js",
+    "ingest": "node ingest.js",
+    "verify": "node verify.js",
+    "tamper-demo": "node scripts/tamper_one.js"
+  },
+  "keywords": [
+    "blockchain",
+    "provenance",
+    "camera",
+    "jetson",
+    "ed25519",
+    "sha256",
+    "gstreamer"
+  ],
+  "author": "Hash-Chain Camera System",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "."
+  }
+}
