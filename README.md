@@ -245,6 +245,39 @@ GST_DEBUG=3 npm run demo:dashboard
 - `tampered` - Frame tampered (demo)
 - `error` - System error
 
+## Help Wanted
+
+We welcome contributions! Here are some bite-sized tasks to get started:
+
+### Easy Tasks (Good First Issues)
+- **Improve dashboard visuals**: Add better styling, animations, or color themes
+- **Add frame thumbnails**: Show small previews in the chain log
+- **Export functionality**: Add buttons to export chain data as CSV/JSON
+- **Configuration UI**: Build a web interface to edit `config.json`
+- **Better error messages**: Make verification errors more user-friendly
+
+### Medium Tasks
+- **Add IMU logging**: Integrate accelerometer/gyroscope data into each frame entry
+- **GPS coordinates**: Include location data in the provenance chain
+- **Multiple camera support**: Allow switching between multiple USB cameras
+- **Frame compression**: Add options for different image formats (WebP, HEIF)
+- **Docker support**: Create Dockerfile for easy deployment
+
+### Advanced Tasks
+- **Mobile app**: Build React Native/Flutter app to view chains remotely
+- **Blockchain integration**: Store chain hashes on-chain for immutable audit trail
+- **Hardware security**: Integrate with TPM/HSM for key storage
+- **Real-time streaming**: Add WebRTC for live video streaming with provenance
+- **Machine learning**: Add AI-based tamper detection beyond hash verification
+
+### Documentation
+- **Tutorial videos**: Create setup and demo videos for different platforms
+- **API documentation**: Document all endpoints and SSE events
+- **Security analysis**: Write whitepaper on cryptographic guarantees
+- **Performance benchmarks**: Test and document frame rates, storage usage
+
+**Contributing**: Fork the repo, pick a task, and submit a pull request! For larger features, open an issue first to discuss the approach.
+
 ---
 
-Built for audit-proof provenance tracking on Jetson Orin Nano 💚
+Built for audit-proof provenance tracking on Jetson Orin Nano

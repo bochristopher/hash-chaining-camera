@@ -46,7 +46,7 @@ function verifyChain(outputJson = false) {
                 console.log(JSON.stringify(result));
                 return result;
             }
-            console.error(`❌ Index mismatch at entry ${i}: expected ${i}, got ${entry.index}`);
+            console.error(`Index mismatch at entry ${i}: expected ${i}, got ${entry.index}`);
             return result;
         }
 
@@ -58,7 +58,7 @@ function verifyChain(outputJson = false) {
                 console.log(JSON.stringify(result));
                 return result;
             }
-            console.error(`❌ Hash mismatch at entry ${i}`);
+            console.error(`Hash mismatch at entry ${i}`);
             return result;
         }
 
@@ -70,7 +70,7 @@ function verifyChain(outputJson = false) {
                 console.log(JSON.stringify(result));
                 return result;
             }
-            console.error(`❌ Frame file missing at entry ${i}: ${entry.frameFile}`);
+            console.error(`Frame file missing at entry ${i}: ${entry.frameFile}`);
             return result;
         }
 
@@ -82,7 +82,7 @@ function verifyChain(outputJson = false) {
                 console.log(JSON.stringify(result));
                 return result;
             }
-            console.error(`❌ Frame hash mismatch at entry ${i}`);
+            console.error(`Frame hash mismatch at entry ${i}`);
             return result;
         }
 
@@ -105,7 +105,7 @@ function verifyChain(outputJson = false) {
                     console.log(JSON.stringify(result));
                     return result;
                 }
-                console.error(`❌ Signature verification failed at entry ${i}`);
+                console.error(`Signature verification failed at entry ${i}`);
                 return result;
             }
         } catch (err) {
@@ -114,7 +114,7 @@ function verifyChain(outputJson = false) {
                 console.log(JSON.stringify(result));
                 return result;
             }
-            console.error(`❌ Signature verification error at entry ${i}: ${err.message}`);
+            console.error(`Signature verification error at entry ${i}: ${err.message}`);
             return result;
         }
 
@@ -126,7 +126,7 @@ function verifyChain(outputJson = false) {
                 console.log(JSON.stringify(result));
                 return result;
             }
-            console.error(`❌ Computed hash mismatch at entry ${i}`);
+            console.error(`Computed hash mismatch at entry ${i}`);
             return result;
         }
     }
@@ -136,7 +136,7 @@ function verifyChain(outputJson = false) {
         console.log(JSON.stringify(result));
         return result;
     }
-    console.log(`✅ Chain verification successful! Verified ${chain.length} entries.`);
+    console.log(`Chain verification successful! Verified ${chain.length} entries.`);
     return result;
 }
 

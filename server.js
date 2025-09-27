@@ -16,9 +16,9 @@ function loadConfig() {
     try {
         const configPath = path.join(__dirname, 'config.json');
         config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-        console.log('📁 Configuration loaded:', config);
+        console.log('Configuration loaded:', config);
     } catch (err) {
-        console.error('❌ Failed to load config.json:', err.message);
+        console.error('Failed to load config.json:', err.message);
         process.exit(1);
     }
 }
@@ -40,11 +40,11 @@ function execCapture(command, args = []) {
 async function tryPipelines(pipelines) {
     for (const pipeline of pipelines) {
         try {
-            console.log(`🎥 Trying pipeline: ${pipeline.join(' ')}`);
+            console.log(`Trying pipeline: ${pipeline.join(' ')}`);
             await execCapture('gst-launch-1.0', pipeline);
             return true;
         } catch (err) {
-            console.log(`❌ Pipeline failed: ${err.message}`);
+            console.log(`Pipeline failed: ${err.message}`);
             continue;
         }
     }
@@ -132,10 +132,10 @@ async function processFrame(framePath) {
             });
         }
 
-        console.log(`✅ Frame processed: ${path.basename(timestampedPath)} (index: ${entry.index})`);
+        console.log(`Frame processed: ${path.basename(timestampedPath)} (index: ${entry.index})`);
 
     } catch (err) {
-        console.error('❌ Frame processing failed:', err.message);
+        console.error('Frame processing failed:', err.message);
         broadcastSSE({
             type: 'error',
             message: `Frame processing failed: ${err.message}`
@@ -162,7 +162,7 @@ function startCaptureLoop() {
             const framePath = await captureFrame();
             await processFrame(framePath);
         } catch (err) {
-            console.error('🔄 Capture loop error:', err.message);
+            console.error('Capture loop error:', err.message);
             broadcastSSE({
                 type: 'error',
                 message: `Capture failed: ${err.message}`
@@ -170,7 +170,7 @@ function startCaptureLoop() {
         }
     }, config.captureIntervalMs);
 
-    console.log(`🔄 Capture loop started (interval: ${config.captureIntervalMs}ms)`);
+    console.log(`Capture loop started (interval: ${config.captureIntervalMs}ms)`);
 }
 
 // Tamper with a random existing frame
@@ -306,8 +306,8 @@ function initialize() {
 
     // Start server
     server.listen(PORT, () => {
-        console.log(`🚀 Hash-chaining camera server running at http://localhost:${PORT}/`);
-        console.log(`📹 Camera type: ${config.camera}`);
+        console.log(`Hash-chaining camera server running at http://localhost:${PORT}/`);
+        console.log(`Camera type: ${config.camera}`);
 
         // Start capture loop after a short delay
         setTimeout(startCaptureLoop, 2000);
@@ -316,14 +316,31 @@ function initialize() {
 
 // Cleanup on exit
 process.on('SIGINT', () => {
-    console.log('\n🛑 Shutting down server...');
+    console.log('\nShutting down server...');
     if (captureInterval) {
         clearInterval(captureInterval);
     }
+
+    // Close all SSE connections
+    for (const res of sseClients) {
+        try {
+            res.end();
+        } catch (err) {
+            // Ignore errors when closing connections
+        }
+    }
+    sseClients.clear();
+
     server.close(() => {
-        console.log('✅ Server closed');
+        console.log('Server closed');
         process.exit(0);
     });
+
+    // Force exit if server doesn't close within 2 seconds
+    setTimeout(() => {
+        console.log('Forcing exit...');
+        process.exit(0);
+    }, 2000);
 });
 
 initialize();

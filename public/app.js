@@ -30,7 +30,7 @@ class HashChainDashboard {
             this.eventSource = new EventSource('/events');
 
             this.eventSource.onopen = () => {
-                console.log('📡 SSE connection established');
+                console.log('SSE connection established');
                 this.updateConnectionStatus('connected');
                 this.reconnectAttempts = 0;
             };
@@ -40,17 +40,17 @@ class HashChainDashboard {
                     const data = JSON.parse(event.data);
                     this.handleServerEvent(data);
                 } catch (err) {
-                    console.error('❌ Failed to parse SSE data:', err);
+                    console.error('Failed to parse SSE data:', err);
                 }
             };
 
             this.eventSource.onerror = (error) => {
-                console.error('📡 SSE connection error:', error);
+                console.error('SSE connection error:', error);
                 this.updateConnectionStatus('disconnected');
 
                 if (this.reconnectAttempts < this.maxReconnectAttempts) {
                     setTimeout(() => {
-                        console.log(`🔄 Attempting to reconnect (${this.reconnectAttempts + 1}/${this.maxReconnectAttempts})`);
+                        console.log(`Attempting to reconnect (${this.reconnectAttempts + 1}/${this.maxReconnectAttempts})`);
                         this.reconnectAttempts++;
                         this.setupEventSource();
                     }, this.reconnectDelay);
@@ -58,13 +58,13 @@ class HashChainDashboard {
             };
 
         } catch (error) {
-            console.error('❌ Failed to establish SSE connection:', error);
+            console.error('Failed to establish SSE connection:', error);
             this.updateConnectionStatus('disconnected');
         }
     }
 
     handleServerEvent(data) {
-        console.log('📨 Server event:', data);
+        console.log('Server event:', data);
 
         switch (data.type) {
             case 'connected':
@@ -81,11 +81,11 @@ class HashChainDashboard {
                 break;
 
             case 'verify_ok':
-                this.updateStatus('good', `✅ All good (${data.count} entries verified)`);
+                this.updateStatus('good', `All good (${data.count} entries verified)`);
                 break;
 
             case 'verify_fail':
-                this.updateStatus('error', `❌ Hash mismatch at index ${data.atIndex}`);
+                this.updateStatus('error', `Hash mismatch at index ${data.atIndex}`);
                 break;
 
             case 'tampered':
@@ -93,12 +93,12 @@ class HashChainDashboard {
                 break;
 
             case 'error':
-                console.error('🚨 Server error:', data.message);
-                this.updateStatus('error', `❌ Error: ${data.message}`);
+                console.error('Server error:', data.message);
+                this.updateStatus('error', `Error: ${data.message}`);
                 break;
 
             default:
-                console.log('🔍 Unknown event type:', data.type);
+                console.log('Unknown event type:', data.type);
         }
     }
 
@@ -158,17 +158,17 @@ class HashChainDashboard {
 
         switch (status) {
             case 'connecting':
-                statusElement.textContent = '🔌 Connecting to server...';
+                statusElement.textContent = 'Connecting to server...';
                 break;
             case 'connected':
-                statusElement.textContent = '✅ Connected';
+                statusElement.textContent = 'Connected';
                 // Hide after 3 seconds
                 setTimeout(() => {
                     statusElement.style.opacity = '0';
                 }, 3000);
                 break;
             case 'disconnected':
-                statusElement.textContent = '❌ Connection lost';
+                statusElement.textContent = 'Connection lost';
                 statusElement.style.opacity = '1';
                 break;
         }
@@ -194,7 +194,7 @@ class HashChainDashboard {
     setupTamperButton() {
         this.elements.tamperBtn.addEventListener('click', async () => {
             this.elements.tamperBtn.disabled = true;
-            this.elements.tamperBtn.textContent = '🔧 Tampering...';
+            this.elements.tamperBtn.textContent = 'Tampering...';
 
             try {
                 const response = await fetch('/tamper', {
@@ -207,17 +207,17 @@ class HashChainDashboard {
                 const result = await response.json();
 
                 if (result.success) {
-                    console.log('🔧 Tamper successful:', result.file);
+                    console.log('Tamper successful:', result.file);
                 } else {
-                    console.error('❌ Tamper failed:', result.error);
-                    this.updateStatus('error', `❌ Tamper failed: ${result.error}`);
+                    console.error('Tamper failed:', result.error);
+                    this.updateStatus('error', `Tamper failed: ${result.error}`);
                 }
             } catch (error) {
-                console.error('❌ Tamper request failed:', error);
-                this.updateStatus('error', '❌ Failed to tamper frame');
+                console.error('Tamper request failed:', error);
+                this.updateStatus('error', 'Failed to tamper frame');
             } finally {
                 this.elements.tamperBtn.disabled = false;
-                this.elements.tamperBtn.textContent = '🔧 Tamper a Frame';
+                this.elements.tamperBtn.textContent = 'Tamper a Frame';
             }
         });
     }
@@ -239,7 +239,7 @@ class HashChainDashboard {
             box-shadow: 0 4px 20px rgba(0,0,0,0.5);
             animation: pulse 0.5s ease-in-out;
         `;
-        notification.textContent = `🔧 Tampered with ${filename}`;
+        notification.textContent = `Tampered with ${filename}`;
 
         document.body.appendChild(notification);
 
@@ -253,7 +253,7 @@ class HashChainDashboard {
     clearChainLog() {
         this.elements.chainLog.innerHTML = `
             <div class="chain-entry loading">
-                <span>🔄 Waiting for first frame...</span>
+                <span>Waiting for first frame...</span>
             </div>
         `;
     }

@@ -9,14 +9,14 @@
 <body>
     <div class="container">
         <header>
-            <h1>🔒 Hash-Chaining Camera</h1>
+            <h1>Hash-Chaining Camera</h1>
             <p class="subtitle">Real-time provenance tracking with Ed25519 + SHA-256</p>
         </header>
 
         <div class="main-content">
             <!-- Left Column: Live Preview -->
             <div class="preview-section">
-                <h2>📸 Live Preview</h2>
+                <h2>Live Preview</h2>
                 <div class="preview-container">
                     <img id="preview" src="/latest.jpg" alt="Loading camera feed..." />
                     <p class="preview-note">Updates every ~2 seconds</p>
@@ -25,11 +25,11 @@
 
             <!-- Right Column: Chain Log -->
             <div class="chain-section">
-                <h2>⛓️ Live Chain</h2>
+                <h2>Live Chain</h2>
                 <div class="chain-container">
                     <div id="chain-log" class="chain-log">
                         <div class="chain-entry loading">
-                            <span>🔄 Waiting for first frame...</span>
+                            <span>Waiting for first frame...</span>
                         </div>
                     </div>
                 </div>
@@ -41,19 +41,19 @@
             <div class="status-section">
                 <span class="status-label">Verification Status:</span>
                 <span id="status-indicator" class="status-indicator status-waiting">
-                    🔄 Starting up...
+                    Starting up...
                 </span>
             </div>
             <div class="actions-section">
                 <button id="tamper-btn" class="tamper-btn">
-                    🔧 Tamper a Frame
+                    Tamper a Frame
                 </button>
             </div>
         </div>
 
         <!-- Connection Status -->
         <div id="connection-status" class="connection-status connecting">
-            🔌 Connecting to server...
+            Connecting to server...
         </div>
     </div>
 
