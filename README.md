@@ -1,10 +1,10 @@
-# 🔒 Hash-Chaining Camera for Jetson Orin Nano
+# Hash-Chaining Camera for Jetson Orin Nano
 
 A real-time provenance tracking camera system using Ed25519 digital signatures and SHA-256 hash chaining. Designed specifically for Jetson Orin Nano with GStreamer hardware acceleration.
 
 https://imgur.com/a/BFvuRRk
 
-## ✅ Features
+## Features
 
 - **Hardware-accelerated capture** using Jetson's GStreamer elements
 - **Cryptographic provenance** with Ed25519 + SHA-256 hash chaining
@@ -12,7 +12,7 @@ https://imgur.com/a/BFvuRRk
 - **Tamper detection** with immediate visual feedback
 - **Zero external dependencies** - uses only Node.js built-ins
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites (run these commands on your Jetson)
 
@@ -45,7 +45,7 @@ npm run demo:dashboard
 
 Open http://your-jetson-ip:8080 in your browser.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 hash-chaining-camera/
@@ -66,7 +66,7 @@ hash-chaining-camera/
     └── styles.css      # Dashboard styling
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 Edit `config.json` to match your setup:
 
@@ -96,7 +96,7 @@ List your USB cameras:
 v4l2-ctl --list-devices
 ```
 
-## 🎮 Usage
+## Usage
 
 ### Dashboard Features
 
@@ -123,7 +123,7 @@ npm run verify
 npm run tamper-demo
 ```
 
-## 🔍 How It Works
+## How It Works
 
 ### Hash Chaining
 1. Each frame is captured and saved with timestamp
@@ -165,7 +165,7 @@ gst-launch-1.0 -e v4l2src device=/dev/video0 num-buffers=1 ! \
   filesink location=images/latest.jpg
 ```
 
-## 🛠 Troubleshooting
+## Troubleshooting
 
 ### Port 8080 in use
 ```bash
@@ -205,7 +205,7 @@ Add `GST_DEBUG=3` environment variable for detailed logging:
 GST_DEBUG=3 npm run demo:dashboard
 ```
 
-## 🎯 Demo Presentation Script
+## Demo Presentation Script
 
 1. **Open dashboard**: http://jetson-ip:8080
 2. **Show live preview**: Camera feed updating every 2 seconds
@@ -214,7 +214,7 @@ GST_DEBUG=3 npm run demo:dashboard
 5. **Explain**: "Any altered data breaks the chain, proving tampering occurred"
 6. **Show recovery**: New frames continue building the chain
 
-## 📊 Performance Notes
+## Performance Notes
 
 - Hardware JPEG encoding provides excellent performance
 - 1920x1080 @ 85% quality ≈ 200-500KB per frame
@@ -222,7 +222,7 @@ GST_DEBUG=3 npm run demo:dashboard
 - Dashboard supports 50+ concurrent chain entries
 - Memory usage remains stable during extended operation
 
-## 🔒 Security
+## Security
 
 - **Ed25519**: Industry-standard elliptic curve digital signatures
 - **SHA-256**: Cryptographically secure hashing
@@ -230,7 +230,7 @@ GST_DEBUG=3 npm run demo:dashboard
 - **Immutable chain**: Any tampering breaks cryptographic verification
 - **Timestamp integrity**: Prevents replay attacks
 
-## 🎛️ API Reference
+## API Reference
 
 **Server Endpoints:**
 - `GET /` - Dashboard homepage
