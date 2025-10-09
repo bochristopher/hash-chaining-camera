@@ -2,7 +2,7 @@
 
 A real-time provenance tracking camera system using Ed25519 digital signatures and SHA-256 hash chaining. Designed specifically for Jetson Orin Nano with GStreamer hardware acceleration.
 
-![Hash Chaining Camera Demo](https://i.imgur.com/uMedZmt.png)
+[https://imgur.com/a/BFvuRRk](https://imgur.com/a/hash-chain-camera-BFvuRRk)
 
 ## Features
 
@@ -11,6 +11,8 @@ A real-time provenance tracking camera system using Ed25519 digital signatures a
 - **Real-time dashboard** with live preview and chain monitoring
 - **Tamper detection** with immediate visual feedback
 - **Zero external dependencies** - uses only Node.js built-ins
+
+[![Untampered vs Tampered Comparison](https://i.imgur.com/ClhetxX.png)](https://imgur.com/a/hash-chain-camera-BFvuRRk)
 
 ## Quick Start
 
