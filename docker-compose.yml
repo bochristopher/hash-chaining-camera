@@ -1,8 +1,6 @@
 # Provenance Logger - Docker Compose Configuration
 # Simplified deployment for Jetson Orin Nano
 
-version: '3.8'
-
 services:
   # Logger Mode - Captures frames and builds hash chain
   logger:
