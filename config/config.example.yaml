@@ -1,0 +1,52 @@
+# Provenance Logger Configuration
+
+# Camera Settings
+camera:
+  # Camera type: "CSI" for MIPI CSI camera or "USB" for USB camera
+  camera: "USB"
+
+  # USB camera device (only used if camera is "USB")
+  usb_device: "/dev/video0"
+
+  # Capture resolution
+  width: 1920
+  height: 1080
+
+  # Framerate (for GStreamer pipeline)
+  framerate: 30
+
+  # JPEG quality (1-100, higher = better quality, larger files)
+  jpeg_quality: 85
+
+# Capture interval in milliseconds
+capture_interval_ms: 2000
+
+# Sensor Settings
+sensors:
+  # CAN bus adapter
+  can:
+    enabled: false
+    interface: "can0"
+    bitrate: 500000
+
+  # I2C sensor (e.g., IMU, environmental sensors)
+  i2c:
+    enabled: false
+    bus: 1
+    address: "0x68"  # Example: MPU-6050 IMU
+
+  # Serial sensor (e.g., GPS)
+  serial:
+    enabled: false
+    port: "/dev/ttyTHS0"
+    baudrate: 9600
+
+# Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+
+# Optional metadata
+metadata:
+  device_id: "jetson-orin-nano-001"
+  location: "field-deployment"
+  project: "provenance-stack"

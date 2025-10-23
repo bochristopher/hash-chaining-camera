@@ -1,0 +1,61 @@
+# Provenance Logger - Docker Ignore
+
+# Git
+.git
+.gitignore
+
+# Data and outputs
+data/
+images/
+chain.json
+*.db
+*.jpg
+*.jpeg
+*.png
+
+# Keys (will be mounted)
+keys/
+
+# Node.js
+node_modules/
+npm-debug.log
+package-lock.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Documentation
+README.md
+docs/
+
+# Testing
+test_*.js
+scripts/
+
+# Existing JavaScript implementation (not needed in container)
+server.js
+ingest.js
+verify.js
+generate_keys.js
+test_signatures.js
+ai_quality.py
+public/
+
+# Claude
+.claude/

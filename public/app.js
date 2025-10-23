@@ -109,8 +109,16 @@ class HashChainDashboard {
             loading.remove();
         }
 
+        // Check if entry with this index already exists
+        const existingEntry = this.elements.chainLog.querySelector(`[data-index="${entry.index}"]`);
+        if (existingEntry) {
+            console.log(`Entry with index ${entry.index} already exists, skipping duplicate`);
+            return;
+        }
+
         const entryElement = document.createElement('div');
         entryElement.className = 'chain-entry';
+        entryElement.setAttribute('data-index', entry.index);
 
         const timestamp = new Date(entry.timestamp);
         const timeString = timestamp.toLocaleTimeString();

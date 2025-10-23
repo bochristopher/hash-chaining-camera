@@ -1,0 +1,73 @@
+# Provenance Logger - Docker Compose Configuration
+# Simplified deployment for Jetson Orin Nano
+
+version: '3.8'
+
+services:
+  # Logger Mode - Captures frames and builds hash chain
+  logger:
+    image: provenance-logger:python-core
+    container_name: provenance-logger
+    privileged: true
+    network_mode: host
+    devices:
+      - /dev/video0:/dev/video0        # USB camera
+      - /dev/video1:/dev/video1        # Additional cameras
+      - /dev/i2c-0:/dev/i2c-0          # I2C bus
+      - /dev/i2c-1:/dev/i2c-1          # I2C bus
+    volumes:
+      - ./data:/data                    # Output data
+      - ./config:/config                # Configuration
+      - ./keys:/keys                    # Cryptographic keys
+    restart: unless-stopped
+    command: logger
+    profiles:
+      - logger
+
+  # Verifier Mode - Web dashboard + API (Python + Node.js)
+  verifier:
+    image: provenance-logger:node-ui
+    container_name: provenance-verifier
+    network_mode: host
+    volumes:
+      - ./data:/data                    # Read chain data
+      - ./config:/config                # Configuration
+      - ./keys:/keys                    # Public key for verification
+    restart: unless-stopped
+    command: verifier
+    profiles:
+      - verifier
+
+  # Verifier Mode - Python only (no Node.js UI)
+  verifier-python-only:
+    image: provenance-logger:python-core
+    container_name: provenance-verifier-python
+    network_mode: host
+    volumes:
+      - ./data:/data
+      - ./config:/config
+      - ./keys:/keys
+    restart: unless-stopped
+    command: verifier
+    profiles:
+      - verifier-python
+
+# Usage:
+#
+# Build images:
+#   docker compose build
+#
+# Run logger:
+#   docker compose --profile logger up -d
+#
+# Run verifier (with dashboard):
+#   docker compose --profile verifier up -d
+#
+# Run verifier (Python only):
+#   docker compose --profile verifier-python up -d
+#
+# Stop all:
+#   docker compose down
+#
+# View logs:
+#   docker compose logs -f
